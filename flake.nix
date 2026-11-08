@@ -3,9 +3,11 @@
 
 	inputs = {
 	  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+	  nixarr.url = "github:nix-media-server/nixarr";
+	  nixarr.inputs.nixpkgs.follows = "nixpkgs";
 	};
 
-	outputs = { self, nixpkgs }:
+	outputs = { self, nixpkgs, nixarr }:
 	let
 		system = "x86_64-linux";
 
@@ -25,6 +27,7 @@
 				modules = [
 					./configuration.nix
 					./hardware-configuration.nix
+					nixarr.nixosModules.default
 				];
 			};
 		};
