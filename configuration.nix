@@ -82,6 +82,8 @@
     zotero = { };
   };
 
+  nix.settings.trusted-users = [ "root" "@wheel" ];
+
   users.users = {
 		"ben" = {
 			isNormalUser = true;
