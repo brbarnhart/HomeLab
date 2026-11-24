@@ -256,14 +256,38 @@
           };
           quality_profiles = [
             {
-              # TRaSH WEB-1080p
-              trash_id = "72dae194fc92bf828f32cde7744e51a1";
+							name = "WEB-2160p (Combined)";
+              trash_id = "c4cadd6b35b95f62c3d47a408e53e2f7";
               reset_unmatched_scores.enabled = true;
             }
             {
-              # TRaSH [Anime] Remux-1080p
+              name = "Anime - Dual Audio";
               trash_id = "20e0fc959f1f1704bed501f23bdae76f";
               reset_unmatched_scores.enabled = true;
+              min_format_score = 2000;
+            }
+					];
+					custom_format_groups = {
+					  add = [
+					    {
+					      trash_id = "e3f37512790f00d0e89e54fe5e790d1c"; # Golden Rule UHD
+					      exclude = [
+					        "9b64dff695c2115facf1b6ea59c9bd07" # x265 (no HDR/DV)
+					      ];
+					    }
+					  ];
+					};
+					custom_formats = [
+            {
+              trash_ids = [
+                "418f50b10f1907201b6cfdf881f467b7" # Anime Dual Audio
+              ];
+              assign_scores_to = [
+                {
+                  name = "Anime - Dual Audio";
+                  score = 2001;
+                }
+              ];
             }
           ];
         };
@@ -281,9 +305,53 @@
           };
           quality_profiles = [
             {
-              # TRaSH HD Bluray + WEB
-              trash_id = "d1d67249d3890e49bc12e275d989a7e9";
+              # WEBDL 2160p (Combined): WEB 1080p and WEB 2160p, upgrade until WEB 2160p
+							name = "WEBDL 2160p (Combined)";
+              trash_id = "05fbf054ac8ad0303335026cc2632f1a";
               reset_unmatched_scores.enabled = true;
+            }
+            {
+              # [Anime] Remux-1080p, renamed. Dual audio is required via the score below.
+              name = "Anime - Dual Audio";
+              trash_id = "722b624f9af1e492284c4bc842153a38";
+              reset_unmatched_scores.enabled = true;
+              min_format_score = 2000;
+            }
+          ];
+          # Radarr IDs differ from the Sonarr Golden Rule group. Same effect:
+          # allow 1080p HEVC that is not HDR or Dolby Vision.
+          custom_format_groups = {
+            add = [
+              {
+                trash_id = "ff204bbcecdd487d1cefcefdbf0c278d"; # Golden Rule UHD
+                exclude = [
+                  "839bea857ed2c0a8e084f3cbdbd65ecb" # x265 (no HDR/DV)
+                ];
+              }
+            ];
+          };
+          custom_formats = [
+            {
+              trash_ids = [
+                "4a3b087eea2ce012fcc1ce319259a3be" # Anime Dual Audio
+              ];
+              assign_scores_to = [
+                {
+                  name = "Anime - Dual Audio";
+                  score = 2001;
+                }
+              ];
+            }
+            {
+              trash_ids = [
+                "957d0f44b592285f26449575e8b1167e" # Special Edition
+              ];
+              assign_scores_to = [
+                {
+                  name = "WEBDL 2160p (Combined)";
+                  score = 1000;
+                }
+              ];
             }
           ];
         };
